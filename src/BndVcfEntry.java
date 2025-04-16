@@ -8,7 +8,8 @@ public class BndVcfEntry extends VcfEntry {
 	public BndVcfEntry(String line) throws Exception
 	{
 		super(line);
-		altTokens =  getAlt().split("[\\[\\]]");
+		// altTokens =  getAlt().split("[\\[\\]]");
+		altTokens = new String[] { String.valueOf(getPos()) };
 	}
 	
 	/*

@@ -31,7 +31,7 @@ public class AddGenotypes {
 	/*
 	 * To add other FORMAT fields, add their details here and add the logic to initialize them in reformatVariantFormat
 	 */
-	static String[] newFieldNames = {"GT", "IS", "OT", "DV", "DR"};
+/*	static String[] newFieldNames = {"GT", "IS", "OT", "DV", "DR"};
 	static String[] newFieldNums = {"1", "1", "1", "1", "1"};
 	static String[] newFieldTypes = {"String", "String", "String", "String", "String"};
 	static String[] newFieldDescs = new String[] {
@@ -40,7 +40,27 @@ public class AddGenotypes {
 			"The original type of the variant",
 			"The number of reads supporting the variant sequence",
 			"The number of reads supporting the reference sequence"
-	};
+	};*/
+
+	static String[] newFieldNames = new String[]{"GT",     "IS",     "OT",     "FT",     "GQ",     "PL",     "PR",     "SR",     "DHFC",   "DHBFC",  "DHFFC", "DHSP",    "SM",     "CN",     "BC",    "PE"};
+    static String[] newFieldNums = new String[]{"1",       "1",      "1",      "1",      "1",      "G",      "1",      "1",      "1",      "1",      "1",      "1",      "1",      "1",      "1",      "1"};
+    static String[] newFieldTypes = new String[]{"String", "String", "String", "String", "String", "String", "String", "String", "Float",  "Float",  "Float", "Float",  "String", "String", "String", "String"};
+    static String[] newFieldDescs = new String[]{
+				"Genotype", "Whether or not the variant call was marked as specific due to high read support and length", 
+				"The original type of the variant", 
+				"Sample filter, 'PASS' indicates that all filters have passed for this sample", 
+				"Genotype Quality", 
+				"Normalized, Phred-scaled likelihoods for genotypes as defined in the VCF specification", 
+				"Spanning paired-read support for the ref and alt alleles in the order listed", 
+				"Split reads for the ref and alt alleles in the order listed, for reads where P(allele|read)>0.999", 
+				"duphold depth fold-change", "duphold depth fold-change compared to bins with matching GC", 
+				"duphold depth flank fold-change compared to 1000bp left and right of event", 
+				"duphold count of spanning read-pairs", "Linear copy ratio of the segment mean", 
+				"Estimated copy number", 
+				"Number of bins in the region", 
+				"Number of improperly paired end reads at start and stop breakpoints"
+				};
+
 	
 	/*
 	 * Adds FORMAT fields, including per-sample genotypes, to the variants in a merged VCF file
@@ -214,8 +234,8 @@ public class AddGenotypes {
 					}
 					else
 					{
-						// Fill fields with "NA" but use "./." or "0|0" for genotype
-						String val = "NA";
+						// Fill fields with "." but use "./." or "0|0" for genotype
+						String val = ".";
 						if(fieldName.equals("GT"))
 						{
 							if(Settings.DEFAULT_ZERO_GENOTYPE)
@@ -297,8 +317,19 @@ public class AddGenotypes {
 							res.sampleFieldValues[j][i] = ".";
 						}
 					}
+				} else
+				{
+					String old = oldVariant.getValue(j,field);
+					if(old.length() > 0)
+					{
+						res.sampleFieldValues[j][i] = old;
+					}
+					else
+					{
+						res.sampleFieldValues[j][i] = ".";
+					}
 				}
-				else if(field.equals("DV"))
+/*				else if(field.equals("DV"))
 				{
 					String oldDv = oldVariant.getValue(j, "DV");
 					if(oldDv.length() > 0)
@@ -321,7 +352,7 @@ public class AddGenotypes {
 					{
 						res.sampleFieldValues[j][i] = ".";
 					}
-				}
+				}*/
 			}
 		}
 		
