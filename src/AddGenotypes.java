@@ -79,7 +79,8 @@ public class AddGenotypes {
 			FileFormatField fileFormats = new FileFormatField(vcfFile, true);
 			for(String sampleName : fileFormats.sampleNames)
 			{
-				allSampleNamesList.add(inputFormats.size() + "_" + sampleName);
+				// allSampleNamesList.add(inputFormats.size() + "_" + sampleName);
+				allSampleNamesList.add(sampleName);
 			}
 			inputFormats.add(fileFormats);
 		}

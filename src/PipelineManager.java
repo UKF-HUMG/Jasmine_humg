@@ -33,7 +33,8 @@ static String convertDuplicationsToInsertions(String fileList) throws Exception
 		String basename = StringUtils.fileBaseName(vcfFile);
 		while(basenames.contains(basename))
 		{
-			basename = i + "_" + basename;
+			// basename = i + "_" + basename;
+			basename = basename;
 		}
 		
 		String newVcfFile = Settings.OUT_DIR + "/" + StringUtils.addDescriptor(basename, "dupToIns");
@@ -63,7 +64,8 @@ static String normalizeTypes(String fileList) throws Exception
 		String basename = StringUtils.fileBaseName(vcfFile);
 		while(basenames.contains(basename))
 		{
-			basename = i + "_" + basename;
+			// basename = i + "_" + basename;
+			basename = basename;
 		}
 		String newVcfFile = Settings.OUT_DIR + "/" + StringUtils.addDescriptor(basename, "normalizeTypes");
 		newVcfFiles.add(newVcfFile);
@@ -98,7 +100,8 @@ static String runIris(String fileList) throws Exception
 		String basename = StringUtils.fileBaseName(vcfFile);
 		while(basenames.contains(basename))
 		{
-			basename = i + "_" + basename;
+			// basename = i + "_" + basename;
+			basename = basename;
 		}
 		
 		String newVcfFile = Settings.OUT_DIR + "/" + StringUtils.addDescriptor(basename, "irisRefined");
@@ -126,7 +129,7 @@ static String runIris(String fileList) throws Exception
 		}
 		
 		// Actually run Iris
-		Iris.runIris(allArgs);
+		// Iris.runIris(allArgs);
 		
 		basenames.add(basename);
 	}
@@ -152,7 +155,8 @@ static String markSpecificCalls(String fileList) throws Exception
 		String basename = StringUtils.fileBaseName(vcfFile);
 		while(basenames.contains(basename))
 		{
-			basename = i + "_" + basename;
+			// basename = i + "_" + basename;
+			basename = basename;
 		}
 		
 		String newVcfFile = Settings.OUT_DIR + "/" + StringUtils.addDescriptor(basename, "markedSpec");

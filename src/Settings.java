@@ -50,7 +50,7 @@ public class Settings {
 	static String BAM_FILE_LIST = "";
 	static String IRIS_ARGS = "";
 	
-	static String OUT_DIR = "output";
+	static String OUT_DIR = "tmp";
 	static int THREADS = 1;
 	
 	static int SPECIFIC_MIN_RCOUNT = 10;
